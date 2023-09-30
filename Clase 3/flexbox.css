@@ -1,0 +1,144 @@
+
+body{
+    height: 600px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    background-color: burlywood;
+    justify-content: space-between; /* alinea en el eje principal */
+    align-items: center;  /*start, end, center alinea en el eje secundario*/
+    min-height: 50%;   
+}
+
+.item {
+    padding:1rem;
+    height: 3rem;
+    border: 1px solid;
+    background-color: red;
+    width: 12rem;
+}
+
+.item:nth-of-type(1){
+    flex-grow: 1;
+}
+.item:nth-of-type(2){
+    flex-grow: 12;
+}
+
+.item1 { 
+    grid-area: header; 
+    background-color: blue;
+    color: yellow;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    font-size:20px;
+}
+.item2 { 
+    grid-area: menu; 
+    background-color:yellow;
+    border-radius: 10px;
+    margin:10px;
+    padding: 10px;
+}
+.item3 { 
+    grid-area: main;
+    font-size:20px;
+    background-color: olive;
+    border-radius: 10px;
+    margin:10px;
+    padding: 10px;
+ }
+.item4 { 
+    grid-area: right; 
+    font-size:14px;
+    background-color: red;
+    border-radius: 10px;
+    margin:10px;
+    padding: 10px;
+}
+.item5 { 
+    grid-area: footer;
+    font-size:20px;
+    color: white;
+    background-color: grey;
+    border-radius: 10px;
+    margin:10px;
+    padding: 10px;
+ }
+
+
+.grid-container {
+    display:grid;
+    grid-template-areas:
+    'header header header header header header'
+    'menu main main main right right'
+    'menu footer footer footer footer footer';
+    gap: 10px;
+    padding: 10px;
+}
+
+.item-1{
+    grid-area: header1;
+    background-color: blue;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+}
+
+.item-2{
+    grid-area: header2;
+    background-color: blue;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+}
+.item-3{
+    grid-area: header3;
+    background-color: blue;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+}
+.item-4{
+    grid-area: menu2;
+    background-color: blue;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+}
+.item-5{
+    grid-area: main2;
+    background-color: blue;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+}
+
+
+.grid-container-2 {
+    display:grid;
+    grid-template-areas:
+    'header1 header2 header2 header2 header2 header3'
+    'menu2 main2 main2 main2 main2 main2'
+    ;
+    gap: 10px;
+    padding: 10px;
+}
+
+@media screen and (max-width: 600px){
+    .grid-container-2 {
+        display:grid;
+        grid-template-areas:
+        'header1'
+        'header2'
+        'header3'
+        'menu2'
+        'main2'
+        ;
+        gap: 10px;
+        padding: 10px;
+    }
+}

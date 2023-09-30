@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   <h1>Welcome to <%=title%></h1>
+   <div id="data">
+
+   </div>
+   <div id="secondDiv"></div>
+   <script>
+     document.addEventListener("DOMContentLoaded", async ()=>{
+        //dibujarTablaMetodoFacilInseguro()
+        dibujarTablaMetodoSeguro()
+     })
+
+     async function dibujarTablaMetodoFacilInseguro(){
+        let data = await fetch("/users")
+        let dataInJson = await data.json()
+        let table =`<table border='1'>
+                       <thead>
+                          <tr>
+                              <th>Id</th>
+                              <th>Nombre</th>
+                              <th>Telefono</th>
+                              <th>Direccion</th>
+                              <th>Carnet</th>
+                              <th>Edad</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                  `
+          dataInJson.forEach(row=>{
+              table += "<tr>"
+              Object.keys(row).forEach(field=>{
+                 table += "<td><div>" + row[field] +"</div></td>"
+              })
+              table += "</tr>"
+          })
+          document.getElementById("data").innerHTML = table;
+         
+     }
+     async function dibujarTablaMetodoSeguro(){
+        let data = await fetch("/users")
+          let dataInJson = await data.json()
+          let table = document.createElement("table")
+          table.border = 1
+          let tr = document.createElement("tr")
+          let td = {}
+
+          Object.keys(dataInJson[0]).forEach(k=>{
+            td = document.createElement("td")
+            td.innerText = k 
+            tr.appendChild(td)
+          })
+          table.appendChild(tr)
+          dataInJson.forEach(row => {
+            tr = document.createElement("tr")
+            Object.keys(row).forEach(key=>{
+              td = document.createElement("td")
+              td.innerText = row[key]
+              tr.appendChild(td)
+            })
+            table.appendChild(tr)
+          });
+          document.getElementById("data").appendChild(table)
+     }
+   </script>
+</body>
+</html>

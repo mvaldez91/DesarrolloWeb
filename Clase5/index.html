@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div style="display: inline;">
+        <div style="width: 100px; height: 100px;border:5px solid"
+             id="div1">
+           <img 
+            draggable="true" 
+            width="70px" 
+            height="70px"
+            id="image"
+            src="https://cms.rootstack.com/sites/default/files/inline-images/23-237381_java-html-language-logo-png-transparent-png.png">
+        </div>
+        <div style="width: 100px;height: 100px; border:5px solid red;"
+             id="div2"
+
+        >
+
+        </div>
+    </div>
+
+    <script>
+        let div2 = document.getElementById("div2")
+        let div1 = document.getElementById("div1")
+        document.getElementById('image').ondragstart = function(e){
+            e.dataTransfer.setData("text", e.target.id);
+        }
+        
+        function onDrop(e){
+            e.preventDefault()
+            let data = e.dataTransfer.getData("text")
+            e.target.appendChild(document.getElementById(data))
+        }
+        function allowDrag(e){
+            e.preventDefault()
+        }
+        div2.ondrop = onDrop
+        div2.ondragover = allowDrag
+        div1.ondrop = onDrop
+        div1.ondragover = allowDrag
+    </script>
+</body>
+</html>
