@@ -1,0 +1,8 @@
+@url = http://localhost:4000
+POST {{url}}/auth
+Content-Type: application/json
+
+{
+    "pass": "demo",
+    "email": "cmarroquin@miumg.edu.gt"
+}
