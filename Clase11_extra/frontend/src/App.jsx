@@ -7,6 +7,12 @@ import {Login} from './Pages/Login'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./App.css"
+import { Dashboard } from './Pages/Dashboard'
+
+import socketIO from 'socket.io-client'
+import { API_ENDPOINT } from "./config/consts"
+const socket = socketIO.connect(API_ENDPOINT)
+
 function App() {
  
   
@@ -16,8 +22,9 @@ function App() {
         <Routes>
           <Route index path="/Login" element={<Login />} />
           <Route path="/" element={<Layout />}>
-            <Route index path="/Users" element={<Users />} />
+            <Route index path="/Users" element={<Users socket={socket} />} />
             <Route index path="/Teachers" element={<Teachers />} />
+            <Route index path="/Dashboard" element={<Dashboard socket={socket} />} />
           </Route>
           <Route path="*" 
               element={<>

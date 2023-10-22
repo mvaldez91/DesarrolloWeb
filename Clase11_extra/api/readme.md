@@ -9,3 +9,4 @@
    4. DB_NAME (nombre de datos)
    5. SESSION_SECRET (secreto para sesion)
    6. FRONTEND_DOMAIN (dominio donde esta la app frontend para habilitar)
+   7. NOTIFICATION_EMAIL (email a donde se envia el aviso de inicio de sesion)

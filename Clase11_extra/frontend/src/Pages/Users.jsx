@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { API_ENDPOINT } from '../config/consts'
 
 
-export const Users = () => {
+export const Users = ({socket}) => {
 
   const [users, setUsers] = useState([])
   const dialogRef = useRef(null)
@@ -117,6 +117,13 @@ export const Users = () => {
     setCurrentUser(row)
     dialogRef.current.showModal()
   }
+
+  useEffect(()=>{
+    socket.on("user_has_been_created", async (user)=>{
+      await getAll()
+    })
+    console.log("Socket activo en users.jsx")
+  },[socket])
   return (
     <>
       <dialog ref={dialogRef}>

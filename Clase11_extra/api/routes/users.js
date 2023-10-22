@@ -4,7 +4,15 @@ const sql = require('mssql')
 const {config} = require("../config/sql_server")
 const bcrypt = require('bcrypt');
 const { verifySession } = require('../middlewares/session_auth');
+const { broadcast } = require('../services/sockets');
 const saltRounds = 10;
+
+
+router.get("/socket.test", (req,res)=>{
+  broadcast('test', {data:"test"})
+  res.send("OK")
+  
+})
 
 /* GET users listing. */
 router.get('/', verifySession, async (req, res, next)=> {
@@ -98,7 +106,9 @@ router.post("/", verifySession, async (req, res, next)=>{
                               
                               .query("INSERT INTO Users(name,pass,email, status) VALUES (@name,@pass,@email,@status)")
     resultado = result.rowsAffected
-    //await connection.close()                          
+    //await connection.close()    
+    broadcast('user_has_been_created', {data:req.body})
+    
   }
   catch(err){
     console.error(err)
